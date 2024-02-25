@@ -1,16 +1,25 @@
 import { Route, Switch } from "wouter-preact";
 
+import MainLayout from "../layout";
+
 import { routes } from "./route-constants";
 
 export default function ApplicationRoutes() {
 	return (
 		<Switch>
-			<Route path="/" component={routes[0].component} />
+			<MainLayout>
+				<Route path="/" component={routes[0].component} />
+			</MainLayout>
 
 			{routes.map((route) => (
-				<Route key={route.name} component={route.component} path={route.path} />
+				<MainLayout key={route.name}>
+					<Route
+						key={route.name}
+						component={route.component}
+						path={route.path}
+					/>
+				</MainLayout>
 			))}
-			<></>
 		</Switch>
 	);
 }
