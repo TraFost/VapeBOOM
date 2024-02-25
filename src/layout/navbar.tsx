@@ -1,8 +1,10 @@
+import { MainLogo } from "../assets";
+
 export default function Navbar() {
 	return (
 		<div class="navbar bg-neutral text-neutral-content">
-			<div class="navbar-start">
-				<div class="dropdown">
+			<div class="w-[85%] lg:navbar-start">
+				<div class="dropdown w-full lg:w-auto">
 					<div tabindex={0} role="button" class="btn btn-ghost lg:hidden">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +36,7 @@ export default function Navbar() {
 						</li>
 					</ul>
 				</div>
-				<span class="btn btn-ghost text-xl">VapeBOOM</span>
+				<span class="btn btn-ghost text-xl normal-case">V A P E B O O M</span>
 			</div>
 			<div class="navbar-center hidden lg:flex">
 				<ul class="menu menu-horizontal px-1">
@@ -49,7 +51,15 @@ export default function Navbar() {
 					</li>
 				</ul>
 			</div>
-			<div class="navbar-end"></div>
+			<div class="navbar-end">
+				<figure class="w-24 h-14 hidden lg:block">
+					<img
+						src={MainLogo}
+						class="object-cover h-full w-full"
+						alt="VapeBOOM"
+					/>
+				</figure>
+			</div>
 		</div>
 	);
 }
