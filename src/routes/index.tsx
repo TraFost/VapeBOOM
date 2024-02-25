@@ -7,12 +7,13 @@ import { routes } from "./route-constants";
 export default function ApplicationRoutes() {
 	return (
 		<Switch>
-			<MainLayout>
-				<Route path="/" component={routes[0].component} />
-			</MainLayout>
-
 			{routes.map((route) => (
-				<MainLayout key={route.name}>
+				<MainLayout
+					description={route.description}
+					seoURL={route.seoURL}
+					name={route.name}
+					key={route.name}
+				>
 					<Route
 						key={route.name}
 						component={route.component}
