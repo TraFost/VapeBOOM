@@ -1,7 +1,7 @@
 export function App() {
 	return (
-		<main className="bg-red-500 flex items-center justify-center h-screen">
-			test
+		<main className="flex items-center justify-center h-screen">
+			<button className="btn">test</button>
 		</main>
 	);
 }
