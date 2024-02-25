@@ -7,11 +7,13 @@ interface INavbar {
 }
 
 export default function Navbar({ name }: INavbar) {
-	const [location] = useLocation();
+	const [location, setLocation] = useLocation();
 
-	console.log(location, "<< curr location");
+	const isRouteMatch = location.replace("/", "") === name.toLowerCase();
 
-	console.log("name", name);
+	const navigatoToRoutes = (route: string) => {
+		setLocation(route);
+	};
 
 	return (
 		<div class="navbar bg-neutral text-neutral-content">
@@ -37,13 +39,30 @@ export default function Navbar({ name }: INavbar) {
 						tabindex={0}
 						class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
 					>
-						<li class="hover:text-yellow-400 hover:underline">
-							<span>Home</span>
+						<li
+							onClick={() => navigatoToRoutes("/products")}
+							class={`hover:text-yellow-400 hover:underline ${
+								isRouteMatch && "underline"
+							}`}
+						>
+							<span>Products</span>
 						</li>
-						<li class="hover:text-yellow-400 hover:underline">
-							<span>Product</span>
+
+						<li
+							onClick={() => navigatoToRoutes("/contact")}
+							class={`hover:text-yellow-400 hover:underline ${
+								isRouteMatch && "underline"
+							}`}
+						>
+							<span>Contact Us</span>
 						</li>
-						<li class="hover:text-yellow-400 hover:underline">
+
+						<li
+							onClick={() => navigatoToRoutes("/about")}
+							class={`hover:text-yellow-400 hover:underline ${
+								isRouteMatch && "underline"
+							}`}
+						>
 							<span>About Us</span>
 						</li>
 					</ul>
@@ -52,13 +71,30 @@ export default function Navbar({ name }: INavbar) {
 			</div>
 			<div class="navbar-center hidden lg:flex">
 				<ul class="menu menu-horizontal px-1">
-					<li class="hover:text-yellow-400 hover:underline">
-						<span>Home</span>
+					<li
+						onClick={() => navigatoToRoutes("/products")}
+						class={`hover:text-yellow-400 hover:underline ${
+							isRouteMatch && "underline"
+						}`}
+					>
+						<span>Products</span>
 					</li>
-					<li class="hover:text-yellow-400 hover:underline">
-						<span>Product</span>
+
+					<li
+						onClick={() => navigatoToRoutes("/contact")}
+						class={`hover:text-yellow-400 hover:underline ${
+							isRouteMatch && "underline"
+						}`}
+					>
+						<span>Contact Us</span>
 					</li>
-					<li class="hover:text-yellow-400 hover:underline">
+
+					<li
+						onClick={() => navigatoToRoutes("/about")}
+						class={`hover:text-yellow-400 hover:underline ${
+							isRouteMatch && "underline"
+						}`}
+					>
 						<span>About Us</span>
 					</li>
 				</ul>
