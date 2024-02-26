@@ -1,5 +1,10 @@
+import { useState } from "preact/hooks";
+import { animated } from "@react-spring/web";
 import { useLocation } from "wouter-preact";
 
+import VapeSmoke from "./vape-smoke";
+
+import { useScrollAnimation } from "../hooks";
 import { MainLogo } from "../assets";
 
 interface INavbar {
@@ -7,7 +12,10 @@ interface INavbar {
 }
 
 export default function Navbar({ name }: INavbar) {
+	const [isVapeSmokeVisible, setIsVapeSmokeVisible] = useState(false);
+
 	const [location, setLocation] = useLocation();
+	const { onTop, scrollYProgress } = useScrollAnimation();
 
 	const isRouteMatch = location.replace("/", "") === name.toLowerCase();
 
@@ -15,8 +23,18 @@ export default function Navbar({ name }: INavbar) {
 		setLocation(route);
 	};
 
+	const triggerVapeSmoke = () => {
+		setIsVapeSmokeVisible(true);
+		setTimeout(() => {
+			setIsVapeSmokeVisible(false);
+		}, 2000);
+	};
+
 	return (
-		<div class="navbar bg-neutral text-neutral-content">
+		<animated.div
+			class="navbar bg-neutral text-neutral-content sticky top-0"
+			style={{ background: scrollYProgress.to([0, 1], ["#252525", "#EDE600"]) }}
+		>
 			<div class="w-full lg:navbar-start">
 				<div class="dropdown w-full lg:w-auto">
 					<div tabindex={0} role="button" class="btn btn-ghost lg:hidden">
@@ -41,7 +59,7 @@ export default function Navbar({ name }: INavbar) {
 					>
 						<li
 							onClick={() => navigatoToRoutes("/products")}
-							class={`hover:text-yellow-400 hover:underline ${
+							class={`text-black hover:text-yellow-400 ${
 								isRouteMatch && "underline"
 							}`}
 						>
@@ -50,7 +68,7 @@ export default function Navbar({ name }: INavbar) {
 
 						<li
 							onClick={() => navigatoToRoutes("/contact")}
-							class={`hover:text-yellow-400 hover:underline ${
+							class={`text-black hover:text-yellow-400 ${
 								isRouteMatch && "underline"
 							}`}
 						>
@@ -59,7 +77,7 @@ export default function Navbar({ name }: INavbar) {
 
 						<li
 							onClick={() => navigatoToRoutes("/about")}
-							class={`hover:text-yellow-400 hover:underline ${
+							class={`text-black hover:text-yellow-400 ${
 								isRouteMatch && "underline"
 							}`}
 						>
@@ -67,33 +85,47 @@ export default function Navbar({ name }: INavbar) {
 						</li>
 					</ul>
 				</div>
-				<span class="btn btn-ghost text-xl normal-case">V A P E B O O M</span>
+				<animated.span
+					onClick={triggerVapeSmoke}
+					class="btn btn-ghost text-xl normal-case"
+					style={{
+						color: scrollYProgress.to([0, 1], ["#EDE600", "#E12221"]),
+					}}
+				>
+					V A P E B O O M
+				</animated.span>
+				{isVapeSmokeVisible && (
+					<VapeSmoke
+						onClick={() => setIsVapeSmokeVisible(false)}
+						isVisible={isVapeSmokeVisible}
+					/>
+				)}
 			</div>
 			<div class="navbar-center hidden lg:flex">
 				<ul class="menu menu-horizontal px-1">
 					<li
 						onClick={() => navigatoToRoutes("/products")}
-						class={`hover:text-yellow-400 hover:underline ${
-							isRouteMatch && "underline"
-						}`}
+						class={`text-black ${
+							onTop ? "hover:text-primary" : "hover:text-secondary"
+						} ${isRouteMatch && "underline"}`}
 					>
 						<span>Products</span>
 					</li>
 
 					<li
 						onClick={() => navigatoToRoutes("/contact")}
-						class={`hover:text-yellow-400 hover:underline ${
-							isRouteMatch && "underline"
-						}`}
+						class={`text-black ${
+							onTop ? "hover:text-primary" : "hover:text-secondary"
+						} ${isRouteMatch && "underline"}`}
 					>
 						<span>Contact Us</span>
 					</li>
 
 					<li
 						onClick={() => navigatoToRoutes("/about")}
-						class={`hover:text-yellow-400 hover:underline ${
-							isRouteMatch && "underline"
-						}`}
+						class={`text-black ${
+							onTop ? "hover:text-primary" : "hover:text-secondary"
+						} ${isRouteMatch && "underline"}`}
 					>
 						<span>About Us</span>
 					</li>
@@ -108,6 +140,6 @@ export default function Navbar({ name }: INavbar) {
 					/>
 				</figure>
 			</div>
-		</div>
+		</animated.div>
 	);
 }

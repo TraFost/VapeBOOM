@@ -1,7 +1,7 @@
 export default function HomePage() {
 	return (
-		<>
-			<div class="pt-10">HomePage</div>
-		</>
+		<section class="text-white">
+			<h1>Home Page</h1>
+		</section>
 	);
 }
