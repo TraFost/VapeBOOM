@@ -1,4 +1,4 @@
-import SeoHelmet from "./SeoHelmet";
-import MappedComponent from "./MappedComponent";
+import SeoHelmet from "./seo-helmet";
+import MappedComponent from "./mapped-component";
 
 export { SeoHelmet, MappedComponent };
