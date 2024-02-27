@@ -30,6 +30,8 @@ export default function Navbar({ name }: INavbar) {
 		}, 2000);
 	};
 
+	console.log(isRouteMatch);
+
 	return (
 		<animated.div
 			class="navbar bg-neutral text-neutral-content sticky top-0"
@@ -134,6 +136,7 @@ export default function Navbar({ name }: INavbar) {
 			<div class="navbar-end">
 				<figure class="w-24 h-14 hidden lg:block">
 					<img
+						loading="lazy"
 						src={MainLogo}
 						class="object-cover h-full w-full"
 						alt="VapeBOOM"

@@ -27,5 +27,20 @@
 		"typescript": "^5.3.3",
 		"typescript-eslint": "^7.0.2",
 		"vite": "^5.1.4"
+	},
+	"lint-staged": {
+		"*.ts": [
+			"npx eslint --ignore-path .gitignore --max-warnings 0",
+			"git add"
+		],
+		"*.tsx": [
+			"npx eslint --ignore-path .gitignore --max-warnings 0",
+			"git add"
+		]
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
 	}
 }
