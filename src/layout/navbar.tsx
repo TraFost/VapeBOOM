@@ -30,12 +30,10 @@ export default function Navbar({ name }: INavbar) {
 		}, 2000);
 	};
 
-	console.log(isRouteMatch);
-
 	return (
 		<animated.div
 			class="navbar bg-neutral text-neutral-content sticky top-0"
-			style={{ background: scrollYProgress.to([0, 1], ["#252525", "#EDE600"]) }}
+			style={{ background: scrollYProgress.to([0, 1], ["#E12221", "#EDE600"]) }}
 		>
 			<div class="w-full lg:navbar-start">
 				<div class="dropdown w-full lg:w-auto">
@@ -60,12 +58,21 @@ export default function Navbar({ name }: INavbar) {
 						class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
 					>
 						<li
+							onClick={() => navigatoToRoutes("/about")}
+							class={`text-black hover:text-yellow-400 ${
+								isRouteMatch && "underline"
+							}`}
+						>
+							<span>About Us</span>
+						</li>
+
+						<li
 							onClick={() => navigatoToRoutes("/products")}
 							class={`text-black hover:text-yellow-400 ${
 								isRouteMatch && "underline"
 							}`}
 						>
-							<span>Products</span>
+							<span>Our Products</span>
 						</li>
 
 						<li
@@ -75,15 +82,6 @@ export default function Navbar({ name }: INavbar) {
 							}`}
 						>
 							<span>Contact Us</span>
-						</li>
-
-						<li
-							onClick={() => navigatoToRoutes("/about")}
-							class={`text-black hover:text-yellow-400 ${
-								isRouteMatch && "underline"
-							}`}
-						>
-							<span>About Us</span>
 						</li>
 					</ul>
 				</div>
@@ -106,12 +104,21 @@ export default function Navbar({ name }: INavbar) {
 			<div class="navbar-center hidden lg:flex">
 				<ul class="menu menu-horizontal px-1">
 					<li
+						onClick={() => navigatoToRoutes("/about")}
+						class={`text-black ${
+							onTop ? "hover:text-primary" : "hover:text-secondary"
+						} ${isRouteMatch && "underline"}`}
+					>
+						<span>About Us</span>
+					</li>
+
+					<li
 						onClick={() => navigatoToRoutes("/products")}
 						class={`text-black ${
 							onTop ? "hover:text-primary" : "hover:text-secondary"
 						} ${isRouteMatch && "underline"}`}
 					>
-						<span>Products</span>
+						<span>Our Products</span>
 					</li>
 
 					<li
@@ -121,15 +128,6 @@ export default function Navbar({ name }: INavbar) {
 						} ${isRouteMatch && "underline"}`}
 					>
 						<span>Contact Us</span>
-					</li>
-
-					<li
-						onClick={() => navigatoToRoutes("/about")}
-						class={`text-black ${
-							onTop ? "hover:text-primary" : "hover:text-secondary"
-						} ${isRouteMatch && "underline"}`}
-					>
-						<span>About Us</span>
 					</li>
 				</ul>
 			</div>
