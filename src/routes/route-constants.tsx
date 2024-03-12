@@ -1,4 +1,5 @@
-import { HomePage } from "../pages";
+import HomePage from "../pages/HomePage";
+
 import { IRoutes } from "../models";
 
 export const routes: IRoutes[] = [

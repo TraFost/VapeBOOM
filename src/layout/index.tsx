@@ -10,12 +10,12 @@ export default function MainLayout({
 	seoURL,
 }: IMainLayout) {
 	return (
-		<div class="h-screen">
+		<div class="min-h-screen px-16 py-8">
 			<SeoHelmet title={name} description={description} url={seoURL} />
 
 			<Navbar name={name} />
 
-			<main className="w-full h-full bg-black">{children}</main>
+			<main className="w-full h-full">{children}</main>
 		</div>
 	);
 }

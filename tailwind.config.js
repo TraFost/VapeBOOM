@@ -7,6 +7,9 @@ export default {
 				primary: "#EDE600",
 				secondary: "#E12221",
 			},
+			fontFamily: {
+				poppins: ["Poppins", "sans-serif"],
+			},
 		},
 	},
 	plugins: [require("daisyui")],
