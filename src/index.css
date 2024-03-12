@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+	@apply bg-black;
+	@apply font-poppins;
+}
+
+body section {
+	@apply w-full h-full;
+	@apply bg-black;
+}

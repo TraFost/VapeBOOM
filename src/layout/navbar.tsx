@@ -5,7 +5,6 @@ import { useLocation } from "wouter-preact";
 import VapeSmoke from "./vape-smoke";
 
 import { useScrollAnimation } from "../hooks";
-import { MainLogo } from "../assets";
 
 interface INavbar {
 	name: string;
@@ -31,13 +30,10 @@ export default function Navbar({ name }: INavbar) {
 	};
 
 	return (
-		<animated.div
-			class="navbar bg-neutral text-neutral-content sticky top-0"
-			style={{ background: scrollYProgress.to([0, 1], ["#E12221", "#EDE600"]) }}
-		>
-			<div class="w-full lg:navbar-start">
-				<div class="dropdown w-full lg:w-auto">
-					<div tabindex={0} role="button" class="btn btn-ghost lg:hidden">
+		<div class="navbar text-neutral-content sticky top-0">
+			<div class="w-full md:navbar-start">
+				<div class="dropdown w-full md:w-auto">
+					<div tabindex={0} role="button" class="btn btn-ghost md:hidden">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							class="h-5 w-5"
@@ -59,7 +55,7 @@ export default function Navbar({ name }: INavbar) {
 					>
 						<li
 							onClick={() => navigatoToRoutes("/about")}
-							class={`text-black hover:text-yellow-400 ${
+							class={`text-white hover:text-yellow-400 ${
 								isRouteMatch && "underline"
 							}`}
 						>
@@ -68,7 +64,7 @@ export default function Navbar({ name }: INavbar) {
 
 						<li
 							onClick={() => navigatoToRoutes("/products")}
-							class={`text-black hover:text-yellow-400 ${
+							class={`text-white hover:text-yellow-400 ${
 								isRouteMatch && "underline"
 							}`}
 						>
@@ -77,7 +73,7 @@ export default function Navbar({ name }: INavbar) {
 
 						<li
 							onClick={() => navigatoToRoutes("/contact")}
-							class={`text-black hover:text-yellow-400 ${
+							class={`text-white hover:text-yellow-400 ${
 								isRouteMatch && "underline"
 							}`}
 						>
@@ -87,12 +83,12 @@ export default function Navbar({ name }: INavbar) {
 				</div>
 				<animated.span
 					onClick={triggerVapeSmoke}
-					class="btn btn-ghost text-xl normal-case"
-					style={{
-						color: scrollYProgress.to([0, 1], ["#EDE600", "#E12221"]),
-					}}
+					class="btn btn-ghost text-lg normal-case text-white hover:text-secondary"
+					// style={{
+					// color: scrollYProgress.to([0, 1], ["#EDE600", "#E12221"]),
+					// }}
 				>
-					V A P E B O O M
+					VAPEBOOM
 				</animated.span>
 				{isVapeSmokeVisible && (
 					<VapeSmoke
@@ -101,11 +97,11 @@ export default function Navbar({ name }: INavbar) {
 					/>
 				)}
 			</div>
-			<div class="navbar-center hidden lg:flex">
+			<div class="navbar-end hidden md:flex">
 				<ul class="menu menu-horizontal px-1">
 					<li
 						onClick={() => navigatoToRoutes("/about")}
-						class={`text-black ${
+						class={` text-xs text-[(255, 255, 255, 0.2)] ${
 							onTop ? "hover:text-primary" : "hover:text-secondary"
 						} ${isRouteMatch && "underline"}`}
 					>
@@ -114,7 +110,7 @@ export default function Navbar({ name }: INavbar) {
 
 					<li
 						onClick={() => navigatoToRoutes("/products")}
-						class={`text-black ${
+						class={`text-[(255, 255, 255, 0.2)] text-xs ${
 							onTop ? "hover:text-primary" : "hover:text-secondary"
 						} ${isRouteMatch && "underline"}`}
 					>
@@ -123,7 +119,7 @@ export default function Navbar({ name }: INavbar) {
 
 					<li
 						onClick={() => navigatoToRoutes("/contact")}
-						class={`text-black ${
+						class={`text-[(255, 255, 255, 0.2)] text-xs ${
 							onTop ? "hover:text-primary" : "hover:text-secondary"
 						} ${isRouteMatch && "underline"}`}
 					>
@@ -131,16 +127,6 @@ export default function Navbar({ name }: INavbar) {
 					</li>
 				</ul>
 			</div>
-			<div class="navbar-end">
-				<figure class="w-24 h-14 hidden lg:block">
-					<img
-						loading="lazy"
-						src={MainLogo}
-						class="object-cover h-full w-full"
-						alt="VapeBOOM"
-					/>
-				</figure>
-			</div>
-		</animated.div>
+		</div>
 	);
 }
